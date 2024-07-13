@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <h2>Products</h2>
+    <ul>
+        <% products.forEach(product => { %>
+            <li>
+                <img src="<%= product.img %>" alt="<%= product.name %>">
+                <p><%= product.name %></p>
+                <p>$<%= product.price %></p>
+                <form action="/product/add-to-personal-cart/<%= product._id %>" method="POST">
+                    <button type="submit">Add to Personal Cart</button>
+                </form>
+                <form action="/product/add-to-shared-cart/<%= product._id %>" method="POST">
+                    <input type="text" name="cartId" placeholder="Shared Cart ID" required>
+                    <button type="submit">Add to Shared Cart</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fashion E-Commerce</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+    <div class="container">
+
+    
+    <h1>Welcome to Fashion E-Commerce</h1>
+
+    <% if (!session.userId) { %>
+        <form action="/user/register" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="/user/login">Login here</a></p>
+    <% } else { %>
+        <form action="/user/createCart" method="GET">
+            <button type="submit">Create a collaborative cart</button>
+        </form>
+        <form action="/user/joinCart" method="POST" style="display: flex; align-items: center;">
+            <input type="text" name="cartId" placeholder="Enter Cart ID" style="margin-right: 10px;"  required>
+            <button type="submit" style="margin-right: 10px;">Join a collaborative cart</button>
+        </form>
+        <form action="/user/logout" method="GET">
+            <button type="submit">Logout</button>
+        </form>
+
+        <h2>Products</h2>
+        <div class="product-grid">
+            <% products.forEach(product => { %>
+                <div class="product-item">
+                    <img src="<%= product.img %>" alt="<%= product.name %>">
+                    <h3><%= product.name %></h3>
+                    <p>$<%= product.price %></p>
+                    <form action="/product/add-to-personal-cart/<%= product._id %>" method="POST">
+                        <button type="submit">Add to Personal Cart</button>
+                    </form>
+                    <form action="/product/add-to-shared-cart/<%= product._id %>" method="POST">
+                        <input type="text" name="cartId" placeholder="Shared Cart ID" required>
+                        <button type="submit">Add to Shared Cart</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } %>
+
+</div>
+</body>
+</html>
