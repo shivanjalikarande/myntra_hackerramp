@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Containers Layout</title>
+    <link rel="stylesheet" type="text/css" href="myntra_/public/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            /* Gradient background */
+            background: linear-gradient(to right, #ffc8da, #ffdcc2);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-custom {
+            display: flex;
+            justify-content: space-between;
+            margin-right: 0;
+            height: 700px;
+        }
+
+        .left-container,
+        .right-container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-container {
+            flex: 2;
+            margin-right: 20px;
+            padding-left: 30px;
+        }
+
+        .right-container {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .profile-infoTable {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .profile-infoTable td {
+            padding: 10px 40px;
+        }
+
+        .custom-input {
+            padding: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .cart-button {
+            color: brown !important;
+            background-color: rgb(255, 192, 225) !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            padding: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+            height: 40px;
+        }
+
+        .cart-button:hover {
+            background-color: #ffdcc2 !important;
+            text-decoration-color: black;
+        }
+
+        .table-container {
+            max-height: 200px;
+            /* Adjust height as needed */
+            overflow-y: auto;
+        }
+
+        .table {
+            border-radius: 2px;
+            border-color: #ffc8da;
+        }
+
+        .table-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #ffc8da;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .info-note {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            height: 20px;
+        }
+
+        .info-note i {
+            margin-right: 10px;
+        }
+
+        h5,
+        hr {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-custom">
+            <div class="left-container bg-white" style="margin-top: 70px; margin-bottom: 30px;">
+                <h4 style="color: rgb(255, 65, 160);">Start a Cart Squad!</h4>
+                <br>
+                <form action="/user/createCart" method="POST">
+                    <input type="text" name="cartName" class="custom-input" placeholder="Enter Cart Name"
+                        required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="cart-button">Create a collaborative cart</button>
+                </form>
+                <br>
+                <h3 style="color: rgb(255, 65, 160); ">
+                    Active Groups</h3>
+                    
+                <div class="table-container table-bordered">
+                    <table class="table table-striped" style="border-radius: 2px; border-color: #ffc8da;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID</th>
+                                <th>Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% sharedCarts.forEach(function(cart) { %>
+                                <tr></tr>
+                                    <td><%= cart.name %></td>
+                                    <td><%= cart.id %></td>
+                                    <td> %>
+                                       <%= member[i]  %> 
+                                       <% i++%>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="alert alert-info info-note">
+                    <i class="fas fa-info-circle"></i> Invite your friends & family by sharing ID
+                </div>
+                <br><br>
+                <form action="/user/joinCart" method="POST">
+                    <input type="text" name="cartId" class="custom-input" placeholder="Enter Cart ID"
+                        required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="cart-button">Join a collaborative cart</button>
+                </form>
+            </div>
+            <div class="right-container bg-white" style="margin-top: 0px;">
+                <br>
+                <h5 style="color: rgb(255, 65, 160);">Profile Details</h5>
+                <hr>
+                <br>
+                <table class="profile-infoTable">
+                    <tbody>
+                        <tr>
+                            <td>Full Name</td>
+                            <td>
+                                <%= name %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Number</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Email ID</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Location</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Alternate Mobile</td>
+                            <td>- not added -</td>
+                        </tr>
+                        <tr>
+                            <td>Hint Name</td>
+                            <td>- not added -</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <button class="btn cart-button" style="margin-left: 150px; width: 100px;">Edit</button>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
