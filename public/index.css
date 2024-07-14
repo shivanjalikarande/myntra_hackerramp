@@ -62,9 +62,9 @@ button:hover {
 
 img {
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
     display: block;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 p {

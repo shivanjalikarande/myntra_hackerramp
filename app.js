@@ -51,6 +51,7 @@ const Cart = require('./models/carts');
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/login', require('./routes/user'));
+app.use('/signup', require('./routes/user'));
 app.use('/user', require('./routes/user'));
 app.use('/product', require('./routes/product'));
 
