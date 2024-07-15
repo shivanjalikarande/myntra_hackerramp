@@ -86,6 +86,7 @@ All members of the shared cart can add items. Everyone sees these updates in rea
 
 ![Myntra-webpg2](https://github.com/user-attachments/assets/c10903d2-d1b4-498d-b5ba-e0782e405849)
 ![Myntra-webpg1](https://github.com/user-attachments/assets/e16a184f-8fb2-4d01-aed3-53198512bb19)
+![Myntra-webpg3](https://github.com/user-attachments/assets/49b0de54-4d05-4eb1-8cc3-a2f8d907b118)
 
 
 ## Tech Stack
