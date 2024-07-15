@@ -168,7 +168,7 @@ router.get("/cart", async (req,res)=>{
                 cartNames.push(cart);
             }
         }
-        console.log(quantity);
+        // console.log(quantity);
     res.render("cart",{cartItems:products,quantity:quantity,i:0,shared:cartNames});
     
 })
@@ -194,7 +194,7 @@ router.post("/cart/shared",async (req,res)=>{
             const product= await Product.findById(prodId);
                 cartItems.push(product); 
         }
-        console.log(quantity);
+        // console.log(quantity);
         res.render('shared',{cartItems:cartItems,quantity:quantity,i:0,name:name,cartId:cartId});
     }
 })

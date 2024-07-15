@@ -112,7 +112,8 @@
                                         <p class="mb-0">Rs. <%= product.price %></p>
                                         <form action="/product/add-to-personal-cart/<%= product._id %>" method="POST">
                                             <input type="hidden" id="hidden-quantity-<%= product._id %>" name="quantity" value="1">
-                                            <button type="submit" class="add-to-cart-btn"><i class="fas fa-plus"></i> Your Bag</button>
+                                            <button type="submit" onclick="syncQuantity('<%= product._id %>')" class="add-to-cart-btn"><i class="fas fa-plus"></i> Your Bag</button>
+                                            <!-- <button type="submit" onclick="syncQuantity('<%= product._id %>')">Your Bag</button> -->
                                         </form>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
@@ -120,26 +121,29 @@
                                                 <label for="sharedCartId"></label>
                                                 <% if(shared && shared.length){ %>
                                                   <select name="sharedCartId" id="sharedCartId" class="shared-cart-dropdown">
-                                                    <% shared.forEach(function(cart){ %>
+                                                    <% shared.forEach(cart => { %>
                                                         <option value="<%= cart._id %>">
                                                             <%= cart.name %>
                                                         </option>
                                                         <% }); %>
                                                 </select>
-                                                     <input type="hidden" id="hidden-quantity-<%= product._id %>" name="quantity" value="1">
-                                                     <button type="submit" class="add-to-cart-btn"><i class="fas fa-plus"></i> Shared Bag</button>
-                                            </form>
+                                                     <input type="hidden" id="hidden-quantity-shared-<%= product._id %>" name="quantity" value="1" >
+                                                     <button type="submit" onclick="syncQuantity('<%= product._id %>', true)" class="add-to-cart-btn"><i class="fas fa-plus"></i> Shared Bag</button>
+                                                     
+                                            
+                                            
                                             <% } else { %>
+                                                <!-- <p>You do not have any shared carts!</p> -->
                                                 <select name="sharedCartId" id="sharedCartId"
                                                     class="shared-cart-dropdown">
                                                     <option>No group!</option>
                                                 </select>
-                                                <input type="hidden" id="hidden-quantity-<%= product._id %>"
-                                                    name="quantity" value="1">
-                                                <a><button
-                                                        class="add-to-cart-btn"><i class="fas fa-plus"></i> Shared
-                                                        Bag</button></a>
+                                                
                                                 <% } %>
+                                            </form>
+
+                                                
+
                                     </div>
 
                                 </div>
@@ -168,7 +172,7 @@
 
         function syncQuantity(productId, isShared = false) {
             const quantityInput = document.getElementById('quantity-' + productId);
-            const hiddenQuantityInput = isShared
+            const hiddenQuantityInput = isShared 
                 ? document.getElementById('hidden-quantity-shared-' + productId)
                 : document.getElementById('hidden-quantity-' + productId);
             hiddenQuantityInput.value = quantityInput.value;

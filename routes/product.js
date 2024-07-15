@@ -29,7 +29,7 @@ router.post('/add-to-shared-cart/:productId', async (req, res) => {
     else{
         const productId = req.params.productId;
         const cartId = req.body.sharedCartId;
-       
+        
         const cart = await Cart.findByIdAndUpdate(cartId, {$push: {products: productId , quantity: req.body.quantity}},{new:true});
         res.redirect('/');
     }
