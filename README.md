@@ -1,5 +1,4 @@
-
-# Collaborative Shopping Experience 
+# CollabCart - Collaborative Shopping Experience 
 __Myntra-Hackerramp - WeForShe__
 
 ![Tech Stack Icon](https://d8it4huxumps7.cloudfront.net/uploads/competition-sharable/6045df36d82e6_700w_400h__1_.png) 
